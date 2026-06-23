@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -6,15 +6,16 @@ import { ApiService } from '../services/api.service';
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
-export class Home {
-  backendMessage = '';
+export class Home { backendMessage = signal('');
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService) {
+    this.loadMessage();
+  }
 
-  ngOnInit() {
+  loadMessage() {
     this.api.getHello().subscribe((res: any) => {
       console.log('Response from backend:', res);
-      this.backendMessage = res.message;
+      this.backendMessage.set(res.message);
     });
   }
 }
