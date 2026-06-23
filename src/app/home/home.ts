@@ -13,6 +13,7 @@ export class Home {
 
   ngOnInit() {
     this.api.getHello().subscribe((res: any) => {
+      console.log('Response from backend:', res);
       this.backendMessage = res.message;
     });
   }
