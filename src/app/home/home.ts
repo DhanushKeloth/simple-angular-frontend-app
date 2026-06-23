@@ -4,6 +4,7 @@ import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
+  standalone: true,
   imports: [JsonPipe],
   templateUrl: './home.html',
   styleUrl: './home.css',
